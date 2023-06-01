@@ -4,9 +4,9 @@
 
 /**
  * is_prime- Checks if a number is prime.
- * 
- * @n The number to check.
- * @return: 1 if the number is prime, 0 otherwise.
+ *
+ * @n: The number to check.
+ * Return: 1 if the number is prime, 0 otherwise.
  */
 int is_prime(long long n)
 {
@@ -26,14 +26,14 @@ int is_prime(long long n)
 
 /**
  * factorize_number- Factorizes a number into pairs of smaller numbers.
- * 
+ *
  * @n: The number to factorize.
  */
 void factorize_number(long long n)
 {
 	long long i;
 	long long least_factor = n; /* Initialize the least factor to n */
-    
+
 	for (i = 2; i <= (long long)sqrt(n); i++)
 	{
 		if (n % i == 0)
@@ -44,7 +44,7 @@ void factorize_number(long long n)
 	}
 	if (least_factor == i)
 	{                         /* Print the factorization */
-		printf("%lld=%lld*%lld\n", n, n / least_factor, least_factor); 
+		printf("%lld=%lld*%lld\n", n, n / least_factor, least_factor);
 	}
 	else
 	{
@@ -54,45 +54,45 @@ void factorize_number(long long n)
 
 /**
  * readfile_numbers- Reads numbers from a file and factorizes them.
- * 
+ *
  * @filename: The name of the file containing the numbers.
  */
-void readfile_numbers(const char* filename)
+void readfile_numbers(const char *filename)
 {
-	FILE* file = fopen(filename, "r");
+	FILE *file = fopen(filename, "r");
 	long long n;
-    
+
 	if (file == NULL)
 	{
 		printf("Error opening file.\n");
 		return;
 	}
-    
+
 	while (fscanf(file, "%lld", &n) == 1)
 	{
 		factorize_number(n);
 	}
-    
+
 	fclose(file);
 }
 
 /**
- * Entry point of the program.
+ * main- Entry point of the program.
  * Reads a file containing numbers.
- * 
+ *
  * @argc: The number of command-line arguments.
  * @argv: An array of command-line argument strings.
- * @return: 0 if the program executed successfully, 1 otherwise.
+ * Return: 0 if the program executed successfully, 1 otherwise.
  */
-int main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
 	if (argc != 2)
 	{
 		printf("Usage: ./factors <file>\n");
 		return (1);
 	}
-	const char* filename = argv[1];
-    
+	const char *filename = argv[1];
+
 	readfile_numbers(filename);
 
 	return (0);
